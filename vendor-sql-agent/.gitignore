@@ -1,0 +1,14 @@
+# secrets
+.env
+
+# environments / caches
+myenv/
+venv/
+.venv/
+__pycache__/
+
+# big data: never commit the full database or raw CSVs
+*.db
+!sample_inventory.db
+*.csv
+data/
