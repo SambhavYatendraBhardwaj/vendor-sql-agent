@@ -39,13 +39,9 @@ class FinalAnswer(BaseModel):
 SCHEMA_NOTES = """
 NOTES ABOUT THIS DATABASE (read carefully):
 - Prices/amounts are in dollars. Date columns are TEXT in 'YYYY-MM-DD' format.
-- final_summary is ALREADY aggregated per (VendorNumber, Brand). Prefer it for vendor/brand
-  questions (profit margin, total sales, freight, stock turnover). It has no VendorName column;
-  join to purchase_prices or vendor_invoice on VendorNumber to get names.
-- Column names differ between tables: sales uses VendorNo, purchases/vendor_invoice/
-  purchase_prices use VendorNumber.
-- NEVER join sales directly to purchases (row-level joins fan out and inflate totals by
-  hundreds of times). Aggregate each table in a subquery first, then join the results.
+- final_summary is ALREADY aggregated per (VendorNumber, Brand) and has VendorName and Description columns. Answer vendor/brand questions (profit margin, total sales, freight, stock turnover) from final_summary ALONE. Do NOT join it to other tables for names: joins multiply rows and inflate totals.
+- Column names differ between tables: sales uses VendorNo, purchases/vendor_invoice/purchase_prices use VendorNumber.
+- NEVER join sales directly to purchases (row-level joins fan out and inflate totals by hundreds of times). Aggregate each table in a subquery first, then join the results.
 - sales (12.8M rows) and purchases (2.4M rows) are big: always filter or aggregate, never SELECT *.
 - SQLite dialect only: use LIMIT, no ILIKE, no QUALIFY.
 """.strip()

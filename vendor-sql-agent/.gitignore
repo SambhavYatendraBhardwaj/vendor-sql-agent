@@ -9,6 +9,6 @@ __pycache__/
 
 # big data: never commit the full database or raw CSVs
 *.db
-!sample_inventory.db
+!sample.db
 *.csv
 data/
