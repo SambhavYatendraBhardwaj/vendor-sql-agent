@@ -79,11 +79,10 @@ if st.button("Run agent", type="primary") and question.strip():
             st.subheader("Answer")
             st.write(result.answer.replace("$", "\\$"))  # stop Streamlit treating $...$ as math
 
-            c1, c2, c3, c4 = st.columns(4)
-            c1.metric("LLM steps", result.steps)
-            c2.metric("SQL calls", result.sql_calls)
-            c3.metric("SQL errors", result.sql_errors)
-            c4.metric("Time (s)", f"{elapsed:.1f}")
+            st.write(
+    f"**LLM steps:** {result.steps} | **SQL calls:** {result.sql_calls} | "
+    f"**SQL errors:** {result.sql_errors} | **Time:** {elapsed:.1f}s"
+)
 
             with st.expander("Agent trace"):
                 st.write("**Tools used (in order):**", " → ".join(result.tools_used) or "none")
