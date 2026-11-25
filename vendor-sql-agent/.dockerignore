@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.git/
+.gitignore
+.env
+.env.example
+inventory.db
+README.md
+build_db_from_csv.py
+make_sample_db.py
+rebuild_summary.py
